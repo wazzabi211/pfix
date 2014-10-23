@@ -12,6 +12,7 @@ nothing: load standard operators and read from stdin and display in stdout
 ################################################################################
 */
 #include "Postfixer.h"
+#include "Data.h"
 
 int main(int argc, char **argv)
 {
