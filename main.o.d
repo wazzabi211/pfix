@@ -1,1 +1,1 @@
-main.o: main.cpp Postfixer.h Data.h Flag.h
+main.o: main.cpp Postfixer.h Data.h
