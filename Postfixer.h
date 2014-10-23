@@ -25,7 +25,8 @@ class Postfixer
   ~Postfixer();
 
   // Other
-  void validate_flags();
+  int run(char **argv, int argc);
   void read();
   void read_file(); 
+  void help_info();
 };

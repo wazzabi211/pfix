@@ -1,1 +1,1 @@
-Postfixer.o: Postfixer.cpp Postfixer.h
+Postfixer.o: Postfixer.cpp Postfixer.h Data.h
