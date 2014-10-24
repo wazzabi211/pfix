@@ -99,10 +99,15 @@ int Postfixer::run(char **argv, int argc)
   // Load Standard-Operators
   map<string, unsigned int> standard_operators = loadStandardOperators();
 
+  // the input where the unprocessed term will be
+  string input;
+  // the result where the ..errh .. the result will be
+  string result;
+
   if(operator_file)
   {
     // load additional operators from a file and put it into the map 
-    if(operator_display)
+    if(operator_display && !save)
     {
       // Show standard operators and then the loaded ones
       showStandardOperators();
@@ -110,7 +115,7 @@ int Postfixer::run(char **argv, int argc)
       //
     }
   }
-  else if(operator_display)
+  else if(operator_display && !save)
   {
     // if only operator_display and not operator_file is given just display
     // the standard operators
@@ -170,12 +175,107 @@ int Postfixer::run(char **argv, int argc)
   else
   {
     // if file flag was not given ask for the input
-    string input;
-
     cout << "Please enter your term: " << endl;
     cin >> input;
 
+    // debug
+    cout << input << endl;
   }
+
+  // check if the input is given
+  if(input.length() == 0)
+  {
+    cout << "Error: no input given." << endl;
+    return 3;
+  }
+
+
+
+
+
+
+
+
+
+
+  // if the save flag is given we save the result into a file
+  if(save)
+  {
+    // check argv 
+    // search for the file flag
+    for (int actual_argument = 1; actual_argument < argc; actual_argument++)
+    {
+      string argv_string = argv[actual_argument];
+
+      if((argv_string == SHORT_SAVE_FLAG) || (argv_string == FULL_SAVE_FLAG) )
+      {
+        // check if its not the last argument
+        if(actual_argument < (argc - 1) )
+        {
+          // check if the next argument isn't another flag
+          if(argv[actual_argument + 1][0] == '-')
+          {
+            cout << endl << "Error: no file given after save flag." << endl;
+            return 4;  // MAKE ERRORCODE
+          }
+
+          // if ok then try to open file
+          fstream to_save;
+          to_save.open(argv[actual_argument + 1], fstream::out);
+
+          if(to_save.is_open())
+          {
+            cout << "Saving to file: " << argv[actual_argument + 1] << endl;
+
+            // get the input of file from here !!! // TODO
+
+
+
+            // DEBUG
+            to_save << input << endl;
+
+            to_save.close();
+          }
+          else
+          {
+            cout << "Error: could not save to \"" << argv[actual_argument + 1] <<
+            "\"" << endl;  // MAKE ERRORCODE
+            return 2;
+          }
+
+        }
+        else
+        {
+          cout << endl << "Error: no file given after save flag." << endl;
+          return 4; // MAKE ERRORCODE
+        }
+      }
+    }
+  
+
+    if(operator_display)
+    {
+      // save the standard operators
+
+      if(operator_file)
+      {
+        // save additional operators
+      }
+    }
+
+    // save result to file here
+  }
+  else
+  {
+    // display result
+
+    // DEBUG
+    result = input;
+    cout << "Result: " << endl;
+    cout << result << endl;
+  }
+
+
 
   return 0;
 }
