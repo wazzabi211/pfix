@@ -1,4 +1,5 @@
 #include <string>
+#include <map>
 
 class Postfixer
 {
@@ -19,6 +20,18 @@ class Postfixer
   const std::string SHORT_HELP_FLAG = "-h";
   const std::string FULL_HELP_FLAG = "-help";
 
+  const std::string plus_ = "+";
+  const unsigned int plus_p_ = 1;
+
+  const std::string minus_ = "-";
+  const unsigned int minus_p_ = 1;
+
+  const std::string times_ = "*";
+  const unsigned int times_p_ = 2;
+
+  const std::string per_ = "/";
+  const unsigned int per_p_ = 2;
+
   public:
   // Constructors and Destructors
   Postfixer();
@@ -27,6 +40,7 @@ class Postfixer
   // Other
   int run(char **argv, int argc);
   void read();
-  void read_file(); 
   void help_info();
+  std::map<std::string, unsigned int> loadStandardOperators();
+  void showStandardOperators();
 };
