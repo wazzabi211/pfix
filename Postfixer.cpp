@@ -49,6 +49,20 @@ void Postfixer::showStandardOperators()
       cout << per_ << endl;
 }
 
+void Postfixer::saveStandardOperators(fstream &to_save)
+{
+      to_save << endl << "Standard operators: ";
+      to_save << plus_ << ", ";
+      to_save << minus_ << ", ";
+      to_save << times_ << ", ";
+      to_save << per_ << endl;
+}
+
+void Postfixer::convertToPostfix(std::string)
+{
+  // the unbelieveable convertion algorithmus of DOOM
+}
+
 int Postfixer::run(char **argv, int argc)
 {
   bool file = false;
@@ -153,7 +167,8 @@ int Postfixer::run(char **argv, int argc)
           {
             cout << "Loading from file: " << argv[actual_argument + 1] << endl;
 
-            // get the input of file from here !!! // TODO
+            // get the input of file from here
+            to_load >> input;
 
           }
           else
@@ -190,7 +205,7 @@ int Postfixer::run(char **argv, int argc)
   }
 
 
-
+  // ALGORITHM TIME !
 
 
 
@@ -227,12 +242,22 @@ int Postfixer::run(char **argv, int argc)
           {
             cout << "Saving to file: " << argv[actual_argument + 1] << endl;
 
-            // get the input of file from here !!! // TODO
+            // get the result into the file here !
+            if(operator_display)
+            {
+              // save the standard operators
+              saveStandardOperators(to_save);
 
-
+              if(operator_file)
+              {
+                // save additional operators
+              }
+            }
 
             // DEBUG
-            to_save << input << endl;
+            result = input;
+            to_save << "Result:" << endl;
+            to_save << result << endl;
 
             to_save.close();
           }
@@ -251,19 +276,7 @@ int Postfixer::run(char **argv, int argc)
         }
       }
     }
-  
 
-    if(operator_display)
-    {
-      // save the standard operators
-
-      if(operator_file)
-      {
-        // save additional operators
-      }
-    }
-
-    // save result to file here
   }
   else
   {

@@ -1,5 +1,6 @@
 #include <string>
 #include <map>
+#include <fstream>
 
 class Postfixer
 {
@@ -43,4 +44,6 @@ class Postfixer
   void help_info();
   std::map<std::string, unsigned int> loadStandardOperators();
   void showStandardOperators();
+  void saveStandardOperators(std::fstream &to_save);
+  void convertToPostfix(std::string);
 };
