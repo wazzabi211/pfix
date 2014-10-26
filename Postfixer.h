@@ -21,6 +21,7 @@ class Postfixer
   const std::string SHORT_HELP_FLAG = "-h";
   const std::string FULL_HELP_FLAG = "-help";
 
+  // Stamdard Operators
   const std::string plus_ = "+";
   const unsigned int plus_p_ = 1;
 
@@ -32,6 +33,13 @@ class Postfixer
 
   const std::string per_ = "/";
   const unsigned int per_p_ = 2;
+
+  // Other
+  const std::string SEPERATOR = ", ";
+  const std::string SO_INTRO   = "Standard operators: ";
+  const std::string ADDITIONAL_OP = "Additional operators loaded: ";
+
+
 
   public:
   // Constructors and Destructors

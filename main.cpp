@@ -18,10 +18,20 @@ nothing: load standard operators and read from stdin and display in stdout
 
 int main(int argc, char **argv)
 {
-  Postfixer postfixer;
+  int errorcode = 0;
+  try
+  {
+     Postfixer postfixer;
 
-  int errorcode = postfixer.run(argv, argc);
+     errorcode = postfixer.run(argv, argc);
+  }
+ 
+  catch(errorcode)
+  {
+    std::cout << "Error: errorcode " << errorcode << std::endl;
 
+    // switch through errors
+  }
 
   return 0;
 }

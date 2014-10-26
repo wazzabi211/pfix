@@ -42,19 +42,19 @@ map<string, unsigned int> Postfixer::loadStandardOperators()
 
 void Postfixer::showStandardOperators()
 {
-      cout << endl << "Standard operators: ";
-      cout << plus_ << ", ";
-      cout << minus_ << ", ";
-      cout << times_ << ", ";
+      cout << endl << SO_INTRO;
+      cout << plus_ << SEPERATOR;
+      cout << minus_ << SEPERATOR;
+      cout << times_ << SEPERATOR;
       cout << per_ << endl;
 }
 
 void Postfixer::saveStandardOperators(fstream &to_save)
 {
-      to_save << endl << "Standard operators: ";
-      to_save << plus_ << ", ";
-      to_save << minus_ << ", ";
-      to_save << times_ << ", ";
+      to_save << endl << SO_INTRO;
+      to_save << plus_ << SEPERATOR;
+      to_save << minus_ << SEPERATOR;
+      to_save << times_ << SEPERATOR;
       to_save << per_ << endl;
 }
 
@@ -125,7 +125,7 @@ int Postfixer::run(char **argv, int argc)
     {
       // Show standard operators and then the loaded ones
       showStandardOperators();
-      cout << endl << "Additional operators loaded: " << endl;
+      cout << endl << ADDITIONAL_OP << endl;
       //
     }
   }
@@ -206,7 +206,7 @@ int Postfixer::run(char **argv, int argc)
 
 
   // ALGORITHM TIME !
-
+  
 
 
 
